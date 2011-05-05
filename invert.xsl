@@ -54,9 +54,13 @@
     <xsl:template name="renderMainPolygon">
         <xsl:param name="polygons" />
         <Polygon xmlns="http://www.opengis.net/kml/2.2">
+            <!-- BIG(universe) mask -->
             <outerBoundaryIs xmlns="http://www.opengis.net/kml/2.2">
-                <xsl:call-template name="renderBigMask"/>
+                <LinearRing xmlns="http://www.opengis.net/kml/2.2">
+                    <coordinates xmlns="http://www.opengis.net/kml/2.2">5,45.5 12,45.5 12,48 5,48 5,45.5</coordinates>
+                </LinearRing>
             </outerBoundaryIs>
+            <!-- NEW HOLES(former outer shells) -->
             <xsl:for-each select="$polygons/kml:outerBoundaryIs">
                 <innerBoundaryIs xmlns="http://www.opengis.net/kml/2.2">
                     <xsl:copy-of select="kml:LinearRing"/>
@@ -75,12 +79,5 @@
                 </outerBoundaryIs>
             </Polygon>
         </xsl:for-each>
-    </xsl:template>
-    
-    <!-- BIG(universe) mask -->
-    <xsl:template name="renderBigMask">
-        <LinearRing xmlns="http://www.opengis.net/kml/2.2">
-            <coordinates xmlns="http://www.opengis.net/kml/2.2">5,45.5 12,45.5 12,48 5,48 5,45.5</coordinates>
-        </LinearRing>
     </xsl:template>
 </xsl:stylesheet>
