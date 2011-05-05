@@ -4,6 +4,9 @@
     xmlns:kml="http://www.opengis.net/kml/2.2"
     exclude-result-prefixes="kml">
     
+    <!-- Provide custom mask via "stringparam" -->
+    <xsl:param name="mask"/>
+    
     <xsl:template match="@*|node()">
         <xsl:copy>
             <xsl:apply-templates select="@*|node()"/>
@@ -57,7 +60,16 @@
             <!-- BIG(universe) mask -->
             <outerBoundaryIs xmlns="http://www.opengis.net/kml/2.2">
                 <LinearRing xmlns="http://www.opengis.net/kml/2.2">
-                    <coordinates xmlns="http://www.opengis.net/kml/2.2">5,45.5 12,45.5 12,48 5,48 5,45.5</coordinates>
+                    <coordinates xmlns="http://www.opengis.net/kml/2.2">
+                        <xsl:choose>
+                            <xsl:when test="$mask != ''">
+                                <xsl:value-of select="$mask"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:text>5,45.5 12,45.5 12,48 5,48 5,45.5</xsl:text>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </coordinates>
                 </LinearRing>
             </outerBoundaryIs>
             <!-- NEW HOLES(former outer shells) -->
