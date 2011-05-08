@@ -12,3 +12,6 @@ $ xsltproc --stringparam mask '-25,15 40,15 40,80 -25,80 -25,15' cantons.kml > c
 
 The attached 'cantons.kml' is generated from Swisstopo GG25 dataset.
 http://www.toposhop.admin.ch/en/shop/products/landscape/gg25_1
+
+For a demo output check this Swiss boundaries map integration (Google Maps, Google Fusion Tables)
+http://www.vasile.ch/hacks/ft-mask/
