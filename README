@@ -1,0 +1,14 @@
+Transform KML polygons in their 'mask' equivalent entities. 
+For each <Placemark>:
+- an universe rectangle(polygon) that covers the studied area is created.
+- all the previous inner boundaries (holes) become stand-alone polygons and forces a <MultiGeometry> to be created
+- the previous outer boundary become a hole in the universe polygon created
+
+Usage example:
+$ xsltproc invert.xsl cantons.kml > cantons_inverted.kml
+
+If you want to customize the masking area, use 'mask' via --stringparam:
+$ xsltproc --stringparam mask '-25,15 40,15 40,80 -25,80 -25,15' cantons.kml > cantons_inverted.kml
+
+The attached 'cantons.kml' is generated from Swisstopo GG25 dataset.
+http://www.toposhop.admin.ch/en/shop/products/landscape/gg25_1
