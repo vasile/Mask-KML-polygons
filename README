@@ -8,7 +8,7 @@ Usage example:
 $ xsltproc invert.xsl cantons.kml > cantons_inverted.kml
 
 If you want to customize the masking area, use 'mask' via --stringparam:
-$ xsltproc --stringparam mask '-25,15 40,15 40,80 -25,80 -25,15' cantons.kml > cantons_inverted.kml
+$ xsltproc --stringparam mask '-25,15 40,15 40,80 -25,80 -25,15' invert.xsl cantons.kml > cantons_inverted.kml
 
 The attached 'cantons.kml' is generated from Swisstopo GG25 dataset.
 http://www.toposhop.admin.ch/en/shop/products/landscape/gg25_1
